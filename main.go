@@ -1,29 +1,26 @@
 package main
 
 import (
-	"github.com/labstack/echo/v4"
-	"github.com/labstack/echo/v4/middleware"
-	"http-go-sandbox/handlers"
+	"http-go-sandbox/graph"
+	"log"
 	"net/http"
+	"os"
+
+	"github.com/99designs/gqlgen/graphql/handler"
 )
 
+const defaultPort = "8080"
+
 func main() {
-	e := echo.New()
-
-	e.Use(middleware.Logger())
-	e.Use(middleware.Recover())
-	e.Use(middleware.Gzip())
-	e.Use(middleware.CORSWithConfig(corsConfig()))
-
-	e.GET("/hello", handlers.Hello)
-	e.GET("/authors/:id", handlers.FindAuthor)
-	e.GET("/authors", handlers.ListAuthors)
-
-	e.Logger.Fatal(e.Start(":8000"))
-}
-
-func corsConfig() middleware.CORSConfig {
-	return middleware.CORSConfig{
-		AllowMethods: []string{http.MethodGet},
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = defaultPort
 	}
+
+	srv := handler.NewDefaultServer(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{}}))
+
+	http.Handle("/query", srv)
+
+	log.Printf("connect to http://localhost:%s/ for GraphQL playground", port)
+	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
