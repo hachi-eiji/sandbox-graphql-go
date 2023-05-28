@@ -1,6 +1,8 @@
 ## install
 
 ```shell
+# for sqlc generates fully type-safe idiomatic Go code from SQL. 
+go install github.com/kyleconroy/sqlc/cmd/sqlc@latest
 # for debug
 go install github.com/go-delve/delve/cmd/dlv@latest
 # for hot reload
