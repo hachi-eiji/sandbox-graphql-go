@@ -17,9 +17,10 @@ air
 
 1. change `./sqlc/schema.sql`, `./sqlc/query.sql`
 2. run sqlc
+ 
+    ```shell
+    sqlc generate --experimental
+    ```
+
 3. generate `./sqls/models.go`, `./sqls/query.sql.go`
  
-```shell
-# generate file
-sqlc generate --experimental
-```
