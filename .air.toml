@@ -5,14 +5,15 @@ tmp_dir = "tmp"
 [build]
   args_bin = []
   bin = "./tmp/main"
-  cmd = "go build -o ./tmp/main ."
+  # 最適化OFF,インラインOFF
+  cmd = "go build -gcflags 'all=-N -l' -o ./tmp/main ."
   delay = 0
   exclude_dir = ["assets", "tmp", "vendor", "testdata"]
   exclude_file = []
   exclude_regex = ["_test.go"]
   exclude_unchanged = false
   follow_symlink = false
-  full_bin = ""
+  full_bin = "APP_ENV=dev APP_USER=air dlv exec ./tmp/main --continue --accept-multiclient --headless --log --listen=:2345 --api-version=2"
   include_dir = []
   include_ext = ["go", "tpl", "tmpl", "html"]
   include_file = []
