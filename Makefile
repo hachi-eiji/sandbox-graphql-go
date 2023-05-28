@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := help
 
 .PHONY: setup
-setup: ## Setup
+setup: ## setup
 	cp -p .envrc.sample .envrc
 	go install github.com/kyleconroy/sqlc/cmd/sqlc@latest
 	go install github.com/go-delve/delve/cmd/dlv@latest
@@ -20,6 +20,10 @@ build: ## build app
 .PHONY: run
 run: ## run app
 	air
+
+.PHONY: sqlcg
+sqlcg:  ## run sqlc generate --experimental
+	sqlc generate --experimental
 
 .PHONY: help
 help: ## this help

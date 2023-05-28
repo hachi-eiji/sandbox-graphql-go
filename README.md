@@ -1,17 +1,6 @@
 ## install
 
-```shell
-cp -p .envrc.sample .envrc
-# for sqlc generates fully type-safe idiomatic Go code from SQL. 
-go install github.com/kyleconroy/sqlc/cmd/sqlc@latest
-# for debug
-go install github.com/go-delve/delve/cmd/dlv@latest
-# for hot reload
-go install github.com/cosmtrek/air@latest
-# download module
-go mod download
-air
-```
+make setup
 
 ## update query.sql.go
 
@@ -19,7 +8,7 @@ air
 2. run sqlc
  
     ```shell
-    sqlc generate --experimental
+    make sqlcg
     ```
 
 3. generate `./sqls/models.go`, `./sqls/query.sql.go`
