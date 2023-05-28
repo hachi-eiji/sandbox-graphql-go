@@ -1,6 +1,7 @@
 ## install
 
 ```shell
+cp -p .envrc.sample .envrc
 # for sqlc generates fully type-safe idiomatic Go code from SQL. 
 go install github.com/kyleconroy/sqlc/cmd/sqlc@latest
 # for debug
