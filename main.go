@@ -1,7 +1,10 @@
 package main
 
 import (
+	"github.com/go-chi/chi"
+	"github.com/go-chi/chi/middleware"
 	"http-go-sandbox/graph"
+	"http-go-sandbox/middlewares"
 	"log"
 	"net/http"
 	"os"
@@ -17,10 +20,17 @@ func main() {
 		port = defaultPort
 	}
 
+	r := chi.NewRouter()
+
+	// middleware
+	r.Use(middleware.RequestID)
+	r.Use(middleware.RealIP)
+	r.Use(middleware.Logger)
+	r.Use(middlewares.Auth())
+	r.Use(middleware.Recoverer)
+
 	srv := handler.NewDefaultServer(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{}}))
+	r.Handle("/query", srv)
 
-	http.Handle("/query", srv)
-
-	log.Printf("connect to http://localhost:%s/ for GraphQL playground", port)
-	log.Fatal(http.ListenAndServe(":"+port, nil))
+	log.Fatal(http.ListenAndServe(":"+port, r))
 }
