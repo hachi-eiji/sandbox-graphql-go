@@ -12,3 +12,14 @@ go install github.com/cosmtrek/air@latest
 go mod download
 air
 ```
+
+## update query.sql.go
+
+1. change `./sqlc/schema.sql`, `./sqlc/query.sql`
+2. run sqlc
+3. generate `./sqls/models.go`, `./sqls/query.sql.go`
+ 
+```shell
+# generate file
+sqlc generate --experimental
+```
