@@ -1,8 +1,11 @@
 package main
 
 import (
+	"context"
+	"github.com/99designs/gqlgen/graphql"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
+	"github.com/vektah/gqlparser/v2/gqlerror"
 	"http-go-sandbox/graph"
 	"http-go-sandbox/middlewares"
 	"log"
@@ -30,6 +33,11 @@ func main() {
 	r.Use(middleware.Recoverer)
 
 	srv := handler.NewDefaultServer(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{}}))
+	srv.SetErrorPresenter(func(ctx context.Context, e error) *gqlerror.Error {
+		err := graphql.DefaultErrorPresenter(ctx, e)
+		log.Printf("[error] %s", err.Message)
+		return err
+	})
 	r.Handle("/query", srv)
 
 	log.Fatal(http.ListenAndServe(":"+port, r))
