@@ -8,7 +8,7 @@ import (
 	"embed"
 	"errors"
 	"fmt"
-	"http-go-sandbox/graph/model"
+	"sandbox-grahql-go/graph/model"
 	"strconv"
 	"sync"
 	"sync/atomic"

@@ -21,6 +21,10 @@ build: ## build app
 run: ## run app
 	air
 
+.PHONY: fmt
+fmt: ## format
+	go fmt
+
 .PHONY: sqlcg
 sqlcg:  ## run sqlc generate --experimental
 	sqlc generate --experimental

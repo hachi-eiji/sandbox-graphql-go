@@ -1,6 +1,6 @@
 package graph
 
-import "http-go-sandbox/graph/model"
+import "sandbox-grahql-go/graph/model"
 
 //go:generate go run github.com/99designs/gqlgen generate
 

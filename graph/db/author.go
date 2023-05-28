@@ -3,7 +3,7 @@ package db
 import (
 	"context"
 	"github.com/jackc/pgx/v5"
-	"http-go-sandbox/sqls"
+	"sandbox-grahql-go/sqls"
 )
 
 func ListAuthors() ([]sqls.Author, error) {

@@ -2,17 +2,17 @@ package main
 
 import (
 	"context"
-	"github.com/99designs/gqlgen/graphql"
-	"github.com/go-chi/chi"
-	"github.com/go-chi/chi/middleware"
-	"github.com/vektah/gqlparser/v2/gqlerror"
-	"http-go-sandbox/graph"
-	"http-go-sandbox/middlewares"
 	"log"
 	"net/http"
 	"os"
+	"sandbox-grahql-go/graph"
+	"sandbox-grahql-go/middlewares"
 
+	"github.com/99designs/gqlgen/graphql"
 	"github.com/99designs/gqlgen/graphql/handler"
+	"github.com/go-chi/chi"
+	"github.com/go-chi/chi/middleware"
+	"github.com/vektah/gqlparser/v2/gqlerror"
 )
 
 const defaultPort = "8080"

@@ -6,8 +6,8 @@ package graph
 
 import (
 	"context"
-	"http-go-sandbox/graph/db"
-	"http-go-sandbox/graph/model"
+	"sandbox-grahql-go/graph/db"
+	"sandbox-grahql-go/graph/model"
 	"strconv"
 )
 

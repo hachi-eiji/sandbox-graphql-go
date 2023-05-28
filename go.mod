@@ -1,4 +1,4 @@
-module http-go-sandbox
+module sandbox-grahql-go
 
 go 1.20
 
