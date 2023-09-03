@@ -15,7 +15,7 @@ clean: ## clean
 
 .PHONY: build
 build: ## build app
-	go build -o app -v
+	go build -o app
 
 .PHONY: run
 run: ## run app
